@@ -12,7 +12,7 @@
                 height: 100vh;
                 margin: 0;
             }
-
+            
             .full-height {
                 height: 100vh;
             }
@@ -74,16 +74,46 @@
             <?php Session::forget('error');?>
         @endif
     </div>
-    <form class="content" method="POST" id="payment-form"  action="/payment/add-funds/paypal">
-        {{ csrf_field() }}
-    <h2>Purchase Tokens Here</h2>
-    <p>How many Tokens would you like to purchase?</p>
-    <p>      
-    <label><b>Enter Amount</b></label>
-    <input name="amount" type="text"></p>      
-    <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="Buy Now">
-    <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
-    </form>
+    <div id="token-purchase">
+        <form class="content" id="payment-form" method="POST" id="payment-form"  action="/pay">
+            {{ csrf_field() }}
+        <h2>Purchase Tokens Here</h2>
+        <p>How many Tokens would you like to purchase?</p>
+        <p>      
+        <label><b>Enter Amount</b></label>
+        <input type="text" name="amount" placeholder="Enter amount" />
+        <input type="hidden" id="token" name="token" />
+          <div id="card-element"></div>
+          <button id="sub" type="submit">Pay</button>
+          <div id="spinner" style="display:none;">
+            <img id="img-spinner" src="spinner.gif" alt="Loading" />
+          </div>
+        </form>
+    </div>
   </div>
+
+  <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+  <script>
+  var stripe = Stripe('<?=getenv("STRIPE_PUBLIC")?>');
+  var elements = stripe.elements();
+  var card = elements.create('card');
+  card.mount('#card-element');
+
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function(event){
+    event.preventDefault();
+    stripe.createToken(card).then(function (result) {
+        if (result.error) {
+            alert("WRONG");
+        }
+        else {
+            document.getElementById('spinner').style.display="block";
+            document.getElementById('sub').style.display="none";
+            document.getElementById('token').setAttribute('value', result.token.id);
+            form.submit();
+        }
+    });
+  });
+  </script>
 </body>
 </html>

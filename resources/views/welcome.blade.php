@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to Zeus Currency
+                    Welcome to Digipound
                 </div>
                 <div>
                     Stable Online Investments with Accurate Fiat Backing
@@ -89,8 +89,8 @@
                 <div>
                 </div>
                 <div class="links">
-                    <a href="\paywithpaypal">Purchase Tokens Now</a>
-                    <a href="\paywithpaypal">View our Audit</a>
+                    <a href="\pay">Purchase Tokens Now</a>
+                    <a href="\pay">View our Audit</a>
                 </div>
             </div>
         </div>

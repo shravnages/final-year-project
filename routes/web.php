@@ -15,13 +15,12 @@ Route::get('/', function() {
     return view('welcome');
 });
 
-Route::get('/paywithpaypal', function() {
-    return view('paywithpaypal');
-});
-
 Route::post('/payment/add-funds/paypal', 'PaymentController@payWithPaypal');
 Route::get('/status', 'PaymentController@getPaymentStatus')->name('status');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/pay', 'StripeController@index');
+Route::post('/pay', 'StripeController@submit');
