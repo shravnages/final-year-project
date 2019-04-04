@@ -24,3 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/pay', 'StripeController@index');
 Route::post('/pay', 'StripeController@submit');
+
+Route::get('/about', function() {
+    return view('about');
+});
+

@@ -67,31 +67,26 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+                    <a href="{{ url('/home') }}">Home</a>
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Welcome to DigiPound
-                </div>
-                <div>
-                    Stable Online Investments with Accurate Fiat Backing
-                </div>
+                <h1>What are Digipounds?</h1>
                 <div>
                 </div>
-                <div class="links">
-                    <a href="\pay">Purchase Tokens Now</a>
-                    <a href="\about">About Digipound</a>
-                </div>
+                <h3>
+                Digipounds are digital representations of GBP, currently trading at a 1:1 ratio.
+                </h3>
+                <h4>
+                They are a form of stablecoin, as there will always be sufficient GBP in our reserve to redeem digipounds at any time.
+                </h4>
+                <h4>
+                Confirm with our  <a href="{{ url('/') }}">audit</a>, updating in real-time.
+                </h4>
+                <h5>
+                Easily purchase, redeem, and trade digipounds with other users. Soon to come - opportunity to invest in markets!
+                </h5>
             </div>
         </div>
     </body>
