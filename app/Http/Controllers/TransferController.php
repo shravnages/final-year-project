@@ -42,12 +42,12 @@ class TransferController extends Controller
                     $transaction1 = Transaction::create([
                         'user_id' => Auth::user()->id,
                         'amount' => $_POST['amount']*-1,
-                        'stripe_transaction' => 'Transfer'
+                        'stripe_transaction' => 'Transfer' . $recipient->name
                     ]);
                     $transaction2 = Transaction::create([
                         'user_id' => $_POST['id'],
                         'amount' => $_POST['amount'],
-                        'stripe_transaction' => 'Transfer'
+                        'stripe_transaction' => 'Transfer' . Auth::user()->name
                     ]);
                     $request->session()->flash('status', 'Transaction Successful');
                 }

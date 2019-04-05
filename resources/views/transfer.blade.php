@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Purchase Tokens</title>
+    <title>Transfer Tokens</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <style>
             html, body {
@@ -94,10 +94,10 @@
         <h2>Transfer Tokens Here</h2>
         <p>You have a balance of {{ $balance }} DGP.</p>
         <p>  
-        <label><b>Enter ID of user to transfer DigiPounds to.</b></label>
+        <label><b>Enter ID of user to transfer DigiPounds to.</b></br></label>
+        <b></b>
         <input type="number" name="id" placeholder="ID" />
         <input type="number" name="amount" placeholder="DGP" />
-        <input type="hidden" id="token" name="token" />
           <div id="card-element"></div>
           <button id="sub" type="submit">Transfer</button>
         </form>

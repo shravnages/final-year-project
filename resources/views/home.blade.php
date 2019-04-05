@@ -25,7 +25,19 @@
                     <b>Transactions:</b><br />
                     <ul>
                         @foreach ($transactions as $t)
-                            <li>Paid &pound;{{ number_format($t->amount, 2) }} on {{ $t->created_at }}</li>
+                            @if (strpos($t->stripe_transaction, 'Transfer') !== false)
+                                @if ($t->amount > 0)
+                                <li>Received &pound;{{ number_format($t->amount, 2) }} from 
+                                    {{ strlen($n = substr($t->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
+                                    on {{ $t->created_at }}.</li>
+                                @else
+                                <li>Transferred &pound;{{ number_format($t->amount *-1, 2) }} to 
+                                    {{ strlen($n = substr($t->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
+                                    on {{ $t->created_at }}.</li>
+                                @endif
+                            @else
+                                <li>Paid &pound;{{ number_format($t->amount, 2) }} on {{ $t->created_at }}.</li>
+                            @endif
                         @endforeach
                     </ul>
 
