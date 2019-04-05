@@ -20,25 +20,26 @@
                     @endif
 
 
-                    <b>You have a balance of {!! $balance !!} DGP.</b><br />
+                    <b>You have a balance of {{ $balance }} DGP.</b><br />
 
-                    <b>Transactions:</b><br />
+                    <b>Recent Transactions:</b><br />
                     <ul>
-                        @foreach ($transactions as $t)
-                            @if (strpos($t->stripe_transaction, 'Transfer') !== false)
-                                @if ($t->amount > 0)
-                                <li>Received &pound;{{ number_format($t->amount, 2) }} from 
-                                    {{ strlen($n = substr($t->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
-                                    on {{ $t->created_at }}.</li>
+                        @for ($i = count($transactions)-1; $i >= 0; $i-- )
+                            @if (strpos($transactions[$i]->stripe_transaction, 'Transfer') !== false)
+                                @if ($transactions[$i]->amount > 0)
+                                <li>Received &pound;{{ number_format($transactions[$i]->amount, 2) }} from 
+                                    {{ strlen($n = substr($transactions[$i]->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
+                                    on {{ $transactions[$i]->created_at }}.</li>
                                 @else
-                                <li>Transferred &pound;{{ number_format($t->amount *-1, 2) }} to 
-                                    {{ strlen($n = substr($t->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
-                                    on {{ $t->created_at }}.</li>
+                                <li>Transferred &pound;{{ number_format($transactions[$i]->amount *-1, 2) }} to 
+                                    {{ strlen($n = substr($transactions[$i]->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
+                                    on {{ $transactions[$i]->created_at }}.</li>
                                 @endif
                             @else
-                                <li>Paid &pound;{{ number_format($t->amount, 2) }} on {{ $t->created_at }}.</li>
+                                <li>Paid &pound;{{ number_format($transactions[$i]->amount, 2) }} 
+                                    on {{ $transactions[$i]->created_at }}.</li>
                             @endif
-                        @endforeach
+                        @endfor
                     </ul>
 
                     <p></p>
