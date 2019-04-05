@@ -26,9 +26,11 @@ class HomeController extends Controller
     {
         $balance = Auth::user()->balance;
         $transactions = Auth::user()->transactions;
+        $id = Auth::user()->id;
         return view('home', [
             'balance' => '&pound;' . number_format($balance, 2),
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'id' => $id
         ]);
     }
 }

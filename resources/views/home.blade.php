@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Dashboard (ID: {{ $id }})</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,6 +19,9 @@
                         </div>
                     @endif
 
+
+                    <b>You have a balance of {!! $balance !!} DGP.</b><br />
+
                     <b>Transactions:</b><br />
                     <ul>
                         @foreach ($transactions as $t)
@@ -26,8 +29,9 @@
                         @endforeach
                     </ul>
 
-                    You have a balance of <b>{!! $balance !!}</b><br />
+                    <p></p>
                     <a class="btn btn-primary" href="/pay">Purchase Digipounds</a>
+                    <a class="btn btn-primary" href="/transfer">Transfer Digipounds</a>
                 </div>
             </div>
         </div>
