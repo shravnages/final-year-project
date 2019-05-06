@@ -11,7 +11,7 @@
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
-                        </div>
+                        </div>  
                     @endif
                     @if (session('error'))
                         <div class="alert alert-danger" role="alert">
@@ -21,8 +21,12 @@
 
 
                     <b>You have a balance of {{ $balance }} DGP.</b><br />
+                    <!--<b>token_name</b><br />-->
 
                     <b>Recent Transactions:</b><br />
+                    <script>
+                        tryThis("Hi");
+                    </script>
                     <ul>
                         @for ($i = count($transactions)-1; $i >= 0; $i-- )
                             @if (strpos($transactions[$i]->stripe_transaction, 'Transfer') !== false)

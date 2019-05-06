@@ -10,6 +10,9 @@
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
+        "furqansiddiqui/erc20-php": "^0.1.2",
+        "furqansiddiqui/ethereum-rpc": "^0.1.4",
+        "furqansiddiqui/http-client": "dev-master",
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
