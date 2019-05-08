@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Http\Request;
 use EthereumRPC\EthereumRPC;
 use ERC20\ERC20;
+use Web3\Web3;
 
 class HomeController extends Controller
 {
@@ -37,10 +38,12 @@ class HomeController extends Controller
         /*$geth = new EthereumRPC('127.0.0.1', 8545);
         $erc20 = new ERC20($geth);
         $token = $erc20->token("0xf5e7f08c91b5d8579746eaad70ac509e94e2f1d3");
+        var_dump($token);*/
 
-        var_dump($token->name());
-        var_dump($token->symbol());
-        //var_dump($token->decimals());*/
+        $web3 = new Web3('http://localhost:8545');
+        $eth = $web3->eth;
+
+        
 
 
         return view('home', [

@@ -24,9 +24,6 @@
                     <!--<b>token_name</b><br />-->
 
                     <b>Recent Transactions:</b><br />
-                    <script>
-                        tryThis("Hi");
-                    </script>
                     <ul>
                         @for ($i = count($transactions)-1; $i >= 0; $i-- )
                             @if (strpos($transactions[$i]->stripe_transaction, 'Transfer') !== false)
