@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Auth;
@@ -27,10 +29,11 @@ class HomeController extends Controller
         $balance = Auth::user()->balance;
         $transactions = Auth::user()->transactions;
         $id = Auth::user()->id;
+
         return view('home', [
             'balance' => $balance,
             'transactions' => $transactions,
-            'id' => $id
+            'id' => $id,
         ]);
     }
 }

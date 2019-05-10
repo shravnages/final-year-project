@@ -10,10 +10,15 @@
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
+        "furqansiddiqui/erc20-php": "^0.1.2",
+        "furqansiddiqui/ethereum-rpc": "^0.1.4",
+        "furqansiddiqui/http-client": "dev-master",
         "guzzlehttp/guzzle": "~6.0",
+        "ilyasdeckers/web3php": "dev-master",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "paypal/rest-api-sdk-php": "^1.14",
+        "sc0vu/web3.php": "dev-master",
         "stripe/stripe-php": "^6.29"
     },
     "require-dev": {

@@ -1,61 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Purchase Tokens</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-    <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-            
-            .full-height {
-                height: 100vh;
-            }
+@extends('layouts.main');
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-</head>
+@section('content');
 <body>
   <div class="flex-center position-ref full-height">
     <div class="top-right links">
@@ -73,7 +18,8 @@
         @endif
         
         @if ($message = Session::get('success'))
-            <div>
+            
+            <div> 
                 <span onclick="this.parentElement.style.display='none'">&times;</span>
                 <p>{!! $message !!}</p>
             </div>
@@ -104,10 +50,12 @@
             <img id="img-spinner" src="spinner.gif" alt="Loading" />
           </div>
         </form>
+        <br />
+	    <div id="results"></div>
     </div>
   </div>
 
-  <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v3/"></script> 
   <script>
   var stripe = Stripe('<?=getenv("STRIPE_PUBLIC")?>');
   var elements = stripe.elements();
@@ -116,7 +64,7 @@
 
   var form = document.getElementById('payment-form');
   form.addEventListener('submit', function(event){
-    event.preventDefault();
+	event.preventDefault();
     stripe.createToken(card).then(function (result) {
         if (result.error) {
             alert("WRONG");
