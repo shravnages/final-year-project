@@ -37,7 +37,8 @@ class StripeController extends Controller
                 $transaction = Transaction::create([
                     'user_id' => Auth::user()->id,
                     'amount' => $_POST['amount'],
-                    'stripe_transaction' => $charge->id
+                    'stripe_transaction' => $charge->id,
+                    'account' => Auth::user()->account
                 ]);
                 $request->session()->flash('status', 'Transaction Successful');
             }

@@ -21,6 +21,8 @@ Route::get('/status', 'PaymentController@getPaymentStatus')->name('status');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/homeTransfer', 'HomeController@transferindex')->name('homeTransfer');
+
 
 Route::get('/pay', 'StripeController@index');
 Route::post('/pay', 'StripeController@submit');

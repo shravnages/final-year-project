@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->integer('amount');
             $table->string('stripe_transaction');
+            $table->string('account');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
