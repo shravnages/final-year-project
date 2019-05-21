@@ -92,7 +92,6 @@
         <form class="content" id="transfer-form" method="POST" id="transfer-form"  action="/transfer">
             {{ csrf_field() }}
         <h2>Transfer Tokens Here</h2>
-        <p>You have a balance of {{ $balance }} DGP.</p>
         <p>  
         <label><b>Enter ID of user to transfer DigiPounds to.</b></br></label>
         <b></b>

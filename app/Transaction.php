@@ -7,7 +7,7 @@ class Transaction extends Model
 {
 
     protected $fillable = [
-        'user_id', 'amount', 'stripe_transaction'
+        'user_id', 'amount', 'stripe_transaction', 'account'
     ];
 
     public function user()
