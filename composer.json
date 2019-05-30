@@ -19,7 +19,7 @@
         "laravel/tinker": "^1.0",
         "paypal/rest-api-sdk-php": "^1.14",
         "sc0vu/web3.php": "dev-master",
-        "stripe/stripe-php": "^6.29"
+        "stripe/stripe-php": "^6.35"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

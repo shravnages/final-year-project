@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Stripe\Stripe;
-use Stripe\Charge;
+use Stripe\Stripe, Stripe\Charge, Stripe\Token, Stripe\Account, Stripe\File, Stripe\Payout, Stripe\Transfer;
 use Auth;
 use App\Transaction;
 
@@ -51,4 +50,5 @@ class StripeController extends Controller
         }
         return redirect()->route('home');
     }
+    
 }
