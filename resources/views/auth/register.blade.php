@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -20,6 +20,20 @@
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
+
+                                @if ($errors->has('surname'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('surname') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -48,6 +62,34 @@
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="routing" class="col-md-4 col-form-label text-md-right">{{ __('Sortcode (No Hyphens)') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="routing" type="text" class="form-control{{ $errors->has('routing') ? ' is-invalid' : '' }}" name="routing" value="{{ old('routing') }}" required>
+
+                                @if ($errors->has('routing'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('routing') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="account_no" class="col-md-4 col-form-label text-md-right">{{ __('Bank Account Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="account_no" type="text" class="form-control{{ $errors->has('account_no') ? ' is-invalid' : '' }}" name="account_no" value="{{ old('account_no') }}" required>
+
+                                @if ($errors->has('account_no'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('account_no') }}</strong>
                                     </span>
                                 @endif
                             </div>

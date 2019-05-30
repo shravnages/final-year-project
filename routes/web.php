@@ -30,6 +30,16 @@ Route::post('/pay', 'StripeController@submit');
 Route::get('/transfer', 'TransferController@index');
 Route::post('/transfer', 'TransferController@submit');
 
+Route::get('/redeem', function() {
+    return view('redeem');
+});
+Route::post('/redeem', 'RedeemController@submit');
+
+Route::get('/audit', 'AuditController@index');
+
+Route::get('/acct', 'StripeController@addBankAccount');
+Route::get('/verify', 'StripeController@submitAcctVerification');
+Route::get('/send', 'StripeController@sendMoney');
 
 Route::get('/about', function() {
     return view('about');
