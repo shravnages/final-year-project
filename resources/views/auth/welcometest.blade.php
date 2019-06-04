@@ -12,6 +12,7 @@
 		<script src="{{ asset('js/skel-layers.min.js') }}"></script>
         <script src="{{ asset('js/init.js') }}"></script>
         <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-plaza.css" />
+        <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
         <script src="http://github.hubspot.com/odometer/odometer.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="{{ asset('css/skel.css') }}" />
@@ -192,6 +193,8 @@
                                 </td>
                                 </tbody>
                                 </table>
+                            <div class="footer">Verified by    <a href="https://stripe.com/gb"><i style="font-size:25px" class="fab fa-cc-stripe"></i></a>.
+                            </div>
 							</section>
 						</div>
 						<div class="6u$ 18u$(medium)">
@@ -210,7 +213,7 @@
                                     @endforeach
                                 </ul>
                                 <div class="footer"><small><div id="remaining"></div>Last transaction on {{$date}}.</small><div>
-                                <div class="footer">Verify at 
+                                <div class="footer">Verified by 
                                     <a href="https://ropsten.etherscan.io/token/0xf6cd47eb9ca7e1a94e3b70722e9d7964fe14a811#balances" style="color: #006697">
                                     Etherscan. </a><small>*</small>
                                     

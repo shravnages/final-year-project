@@ -20,11 +20,11 @@ class AuditController extends Controller
     {
         $balance = 0;
         $users = User::all();
-        $transactions = Transaction::all();
+        $transactions = Transaction::all()->reverse();
         $date = '1990-01-01';
         if (!$transactions->isEmpty())
         {
-            $transaction = $transactions->last();
+            $transaction = $transactions->first();
             $date = $transaction->created_at;
         }
 
