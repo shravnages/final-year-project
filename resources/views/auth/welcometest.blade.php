@@ -33,6 +33,7 @@
         var contractAddress = "0xf6cd47EB9ca7e1a94e3B70722E9D7964fE14A811";
         var token = web3.eth.contract(erc20abi).at(contractAddress);
         </script>
+        <?php use App\User ?>
 
 	</head>
 	<body class="landing">
@@ -61,13 +62,27 @@
 
 		<!-- Banner -->
 			<section id="banner" opacity="0.3">
-                <h2>Digipound.</h2>
+                @auth
+                    <h2>Welcome, {{Auth::user()->name}}.</h2>
+                @else
+                    <h2>Digipound.</h2>
+                @endauth
                 <img src="{{ asset('GBP.png') }}" width="200" style="opacity: 0.1" />
-				<p>The Future of Money.</p>
+                @auth
+                    <p>Unlock the possibilities of Digipound.</p>
+                @else
+                    <p>The Future of Money.</p>
+                @endauth
 				<ul class="actions">
+                    @auth
+                    <li>
+						<a href="/home" class="button big">Start Investing!</a>
+                    </li>
+                    @else
 					<li>
 						<a href="#register" class="button big">Register Now!</a>
-					</li>
+                    </li>
+                    @endauth
 				</ul>
 			</section>
 
@@ -161,7 +176,7 @@
                                     <strong>Current Outbound Payouts:</strong> 
                                     @foreach ($transactions as $transaction)
                                         @if (strpos($transaction->stripe_transaction, 'po') !== false or strpos($transaction->stripe_transaction, 'Refund') !== false)
-                                            <li><a href=" " title="Transcation ID: {{$transaction->stripe_transaction}}" style="color: #006697">&pound;{{ number_format($transaction->amount, 2) }}</a> 
+                                            <li><a href="https://dashboard.stripe.com/{{User::where('id', $transaction->user_id)->first()->account_no}}/test/payouts/{{$transaction->stripe_transaction}}" title="Transcation ID: {{$transaction->stripe_transaction}}" style="color: #006697">&pound;{{ number_format($transaction->amount, 2) }}</a> 
                                                 <br> => {{ $transaction->created_at }}.</li>
                                         @endif
                                     @endforeach
@@ -175,10 +190,12 @@
                                 <ul>
                                     <strong>Current Holders:</strong>
                                     @foreach ($users as $user)
+                                        @if ($user-> balance > 0)
                                         <li>
                                             <p><a href="https://ropsten.etherscan.io/address/{{$user->account}}" style="color: #006697">{{$user->account}}</a>
                                                 <br> => {{$user->balance}} DGP.</p>
                                         </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                                 <div class="footer"><small><div id="remaining"></div>Last transaction on {{$date}}.</small><div>
@@ -245,6 +262,9 @@
             </script>
 
 		<!-- Three -->
+        @auth
+                
+        @else
 			<section id="register" class="wrapper style3 special">
 				<div class="container">
 					<header class="major">
@@ -255,6 +275,8 @@
 				</div>
 				<div class="container 50%">
 					<form method="POST" action="{{ route('register') }}">
+                        @csrf
+
 						<div class="row uniform">
                             <div class="6u 12u$(small)">
                                 <input placeholder="First Name." id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -330,7 +352,7 @@
 					</form>
 				</div>
 			</section>
-
+        @endauth
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="container">

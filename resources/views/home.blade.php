@@ -29,12 +29,14 @@
                             web3.eth.defaultAccount = mainAddress;
                             token.transfer(accountAddress, value, (error, txHash) => {
                                 document.getElementById("eth_transaction").innerText = "Ethereum Transaction ID:" + txHash;
+                                document.getElementById("notification1").innerText = "...Transaction Successful!";
                             });
                         </script> 
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-warning" role="alert">
                             {{ session('status') }}
                         </div>  
-                        <div id="eth_transaction" class="alert" role="alert"></div> 
+                        <div id="eth_transaction" class="alert" role="alert"></div>
+                        <div id="notification1" class="alert alert-success" role="alert"></div>  
                     @endif
                     @if (session('transfer_status'))
                         <script>
@@ -57,12 +59,14 @@
                             web3.eth.defaultAccount = mainAddress;
                             token.transfer(accountAddress, value, (error, txHash) => {
                                 document.getElementById("eth_transaction").innerText = "Ethereum Transaction ID:" + txHash;
+                                document.getElementById("notification2").innerText = "...Transaction Successful!";
                             });
                         </script> 
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-warning" role="alert">
                             {{ session('transfer_status') }}
                         </div>  
                         <div id="eth_transaction" class="alert" role="alert"></div> 
+                        <div id="notification2" class="alert alert-success" role="alert"></div>  
                     @endif
                     @if (session('refund_status'))
                         <script>
@@ -85,11 +89,14 @@
                             web3.eth.defaultAccount = mainAddress;
                             token.transfer(accountAddress, value, (error, txHash) => {
                                 document.getElementById("eth_transaction").innerText = "Ethereum Transaction ID:" + txHash;
-                                document.getElementById("notification").innerText = "Transaction Successful";
+                                document.getElementById("notification3").innerText = "...Transaction Successful!";
                             });
                         </script> 
-                        <div id="notification" class="alert alert-success" role="alert"></div>  
+                        <div class="alert alert-warning" role="alert">
+                            {{ session('refund_status') }}
+                        </div>  
                         <div id="eth_transaction" class="alert" role="alert"></div> 
+                        <div id="notification3" class="alert alert-success" role="alert"></div>  
                     @endif
                     @if (session('error'))
                         <div class="alert alert-danger" role="alert">
@@ -106,19 +113,21 @@
                         @for ($i = count($transactions)-1; $i >= 0; $i-- )
                             @if (strpos($transactions[$i]->stripe_transaction, 'Transfer') !== false)
                                 @if ($transactions[$i]->amount > 0)
-                                <li>Received &pound;{{ number_format($transactions[$i]->amount, 2) }} from 
+                                <li>Received {{ $transactions[$i]->amount}} from 
                                     {{ strlen($n = substr($transactions[$i]->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
                                     on {{ $transactions[$i]->created_at }}.</li>
                                 @else
-                                <li>Transferred &pound;{{ number_format($transactions[$i]->amount *-1, 2) }} to 
+                                <li>Traded {{ $transactions[$i]->amount *-1}} to 
                                     {{ strlen($n = substr($transactions[$i]->stripe_transaction, 8)) > 0 ? $n : "Unknown" }} 
                                     on {{ $transactions[$i]->created_at }}.</li>
                                 @endif
-                            @elseif (strpos($transactions[$i]->stripe_transaction, 'Refund') !== false)
-                                <li>Returned &pound;{{ number_format($transactions[$i]->amount, 2) }}
+                            @elseif (strpos($transactions[$i]->stripe_transaction, 'po') !== false)
+                                <li>Redeemed {{$transactions[$i]->amount}}DGP for 
+                                    &pound;{{ number_format($transactions[$i]->amount, 2) }} 
                                     on {{ $transactions[$i]->created_at }}.</li>
                             @else
-                                <li>Paid &pound;{{ number_format($transactions[$i]->amount, 2) }} 
+                                <li>Issued {{$transactions[$i]->amount}}DGP
+                                    for &pound;{{ number_format($transactions[$i]->amount, 2) }} 
                                     on {{ $transactions[$i]->created_at }}.</li>
                             @endif
                         @endfor
@@ -159,6 +168,7 @@
                     <a class="btn btn-primary" href="/pay">Purchase Digipounds</a>
                     <a class="btn btn-primary" href="/transfer">Transfer Digipounds</a>
                     <a class="btn btn-primary" href="/redeem">Redeem Digipounds</a>
+                    <a class="btn btn-primary" href="/">Proof of Assets</a>
                 </div>
             </div>
         </div>

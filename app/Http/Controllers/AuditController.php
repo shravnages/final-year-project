@@ -21,16 +21,22 @@ class AuditController extends Controller
         $balance = 0;
         $users = User::all();
         $transactions = Transaction::all();
-        $transaction = $transactions->last();
+        $date = '1990-01-01';
+        if (!$transactions->isEmpty())
+        {
+            $transaction = $transactions->last();
+            $date = $transaction->created_at;
+        }
+
 
         foreach ($users as $user) {
             $balance += $user->balance;
         }
         
-        return view('welcometest', [
+        return view('auth/welcometest', [
             'balance' => $balance,
             'transactions' => $transactions,
-            'date' => $transaction->created_at,
+            'date' => $date,
             'users' => $users
         ]);
     }

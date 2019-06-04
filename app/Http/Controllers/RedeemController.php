@@ -42,7 +42,7 @@ class RedeemController extends Controller
                     'stripe_transaction' => $payout->id,
                     'account' => Auth::user()->account
                 ]);
-                $request->session()->flash('refund_status', 'Refund Successful');
+                $request->session()->flash('refund_status', 'Refund Pending...');
                 return redirect()->route('home');
             }
             else {

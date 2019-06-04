@@ -51,7 +51,7 @@ class TransferController extends Controller
                         'stripe_transaction' => 'Transfer ' . Auth::user()->name,
                         'account' => Auth::user()->account
                     ]);
-                    $request->session()->flash('transfer_status', 'Transaction Successful');
+                    $request->session()->flash('transfer_status', 'Transaction Pending...');
                     return redirect()->route('homeTransfer');
                 }
             }

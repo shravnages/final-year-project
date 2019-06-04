@@ -40,7 +40,7 @@ class StripeController extends Controller
                     'account' => Auth::user()->account
                 ]);
                 
-                $request->session()->flash('status', 'Transaction Successful');
+                $request->session()->flash('status', 'Transaction Pending...');
             }
             else {
                 $request->session()->flash('error', 'Transaction failed');
