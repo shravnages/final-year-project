@@ -39,6 +39,7 @@ class StripeController extends Controller
                     'stripe_transaction' => $charge->id,
                     'account' => Auth::user()->account
                 ]);
+                
                 $request->session()->flash('status', 'Transaction Successful');
             }
             else {

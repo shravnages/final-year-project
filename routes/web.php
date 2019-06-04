@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function() {
-    return view('welcome');
-});
+Route::get('/', 'AuditController@index');
 
 Route::post('/payment/add-funds/paypal', 'PaymentController@payWithPaypal');
 Route::get('/status', 'PaymentController@getPaymentStatus')->name('status');

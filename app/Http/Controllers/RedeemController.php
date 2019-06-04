@@ -31,7 +31,7 @@ class RedeemController extends Controller
                     "currency" => "gbp",
                     "destination" => Auth::user()->account_no
                 ]);
-                Payout::create([
+                $payout = Payout::create([
                     "amount" => $_POST["amount"]*100,
                     "currency" => "gbp",
                     "description" => "Test Payment"
@@ -39,7 +39,7 @@ class RedeemController extends Controller
                 $transaction = Transaction::create([
                     'user_id' => Auth::user()->id,
                     'amount' => $_POST['amount'],
-                    'stripe_transaction' => 'Refund',
+                    'stripe_transaction' => $payout->id,
                     'account' => Auth::user()->account
                 ]);
                 $request->session()->flash('refund_status', 'Refund Successful');

@@ -93,7 +93,7 @@
             {{ csrf_field() }}
         <h2>Transfer Tokens Here</h2>
         <p>  
-        <label><b>Enter ID of user to transfer DigiPounds to.</b></br></label>
+        <label><b>Enter ID of user to transfer Digipounds to.</b></br></label>
         <b></b>
         <input type="number" name="id" placeholder="ID" />
         <input type="number" name="amount" placeholder="DGP" />

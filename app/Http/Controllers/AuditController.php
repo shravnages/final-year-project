@@ -12,16 +12,6 @@ use Illuminate\Http\Request;
 class AuditController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -30,15 +20,18 @@ class AuditController extends Controller
     {
         $balance = 0;
         $users = User::all();
-        $transaction = Transaction::all()->last();
+        $transactions = Transaction::all();
+        $transaction = $transactions->last();
 
         foreach ($users as $user) {
             $balance += $user->balance;
         }
         
-        return view('audit', [
+        return view('welcometest', [
             'balance' => $balance,
-            'date' => $transaction->created_at
+            'transactions' => $transactions,
+            'date' => $transaction->created_at,
+            'users' => $users
         ]);
     }
 

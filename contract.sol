@@ -4,14 +4,6 @@ pragma solidity ^0.4.24;
 // 'Digipound' token contract
 //
 // Deployed to : 0x0B5e6646f3665E5132FDdAAbF1aF95386E70148f
-// Symbol      : DGP
-// Name        : Digipound
-// Total supply: 100000000
-// Decimals    : 18
-//
-// Enjoy.
-//
-// (c) by Moritz Neto with BokkyPooBah / Bok Consulting Pty Ltd Au 2017. The MIT Licence.
 // ----------------------------------------------------------------------------
 
 
