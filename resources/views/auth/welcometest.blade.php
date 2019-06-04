@@ -163,24 +163,35 @@
 							<section class="box">
                             <div classname="odometer" id="odometer1" name="odometer1" style="font-size: 60px"></div>
                                 <h3>GBP in the reserve account.</h3>
-                                <ul>
-                                    <strong>Current Inbound Payments:</strong> 
-                                    @foreach ($transactions as $transaction)
-                                        @if (strpos($transaction->stripe_transaction, 'ch') !== false)
-                                            <li><a href="https://dashboard.stripe.com/test/payments/{{$transaction->stripe_transaction}}" title="Transcation ID: {{$transaction->stripe_transaction}}" style="color: #006697">&pound;{{ number_format($transaction->amount, 2) }}</a> 
-                                                <br> => {{ $transaction->created_at }}.</li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                <ul>
-                                    <strong>Current Outbound Payouts:</strong> 
-                                    @foreach ($transactions as $transaction)
-                                        @if (strpos($transaction->stripe_transaction, 'po') !== false or strpos($transaction->stripe_transaction, 'Refund') !== false)
-                                            <li><a href="https://dashboard.stripe.com/{{User::where('id', $transaction->user_id)->first()->account_no}}/test/payouts/{{$transaction->stripe_transaction}}" title="Transcation ID: {{$transaction->stripe_transaction}}" style="color: #006697">&pound;{{ number_format($transaction->amount, 2) }}</a> 
-                                                <br> => {{ $transaction->created_at }}.</li>
-                                        @endif
-                                    @endforeach
-                                </ul>
+                                <table>
+                                <thead>
+                                    <th><strong>Current Inbound Payments:</strong> </th>
+                                    <th><strong>Current Outbound Payouts:</strong> </th>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                <td>
+                                    <ul>
+                                        @foreach ($transactions as $transaction)
+                                            @if (strpos($transaction->stripe_transaction, 'ch') !== false)
+                                                <li><a href="https://dashboard.stripe.com/test/payments/{{$transaction->stripe_transaction}}" title="Transcation ID: {{$transaction->stripe_transaction}}" style="color: #006697">&pound;{{ number_format($transaction->amount, 2) }}</a> 
+                                                    <br> => {{ $transaction->created_at }}.</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td width="50%">
+                                    <ul>
+                                        @foreach ($transactions as $transaction)
+                                            @if (strpos($transaction->stripe_transaction, 'po') !== false or strpos($transaction->stripe_transaction, 'Refund') !== false)
+                                                <li><a href="https://dashboard.stripe.com/{{User::where('id', $transaction->user_id)->first()->account_no}}/test/payouts/{{$transaction->stripe_transaction}}" title="Transcation ID: {{$transaction->stripe_transaction}}" style="color: #006697">&pound;{{ number_format($transaction->amount, 2) }}</a> 
+                                                    <br> => {{ $transaction->created_at }}.</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                </tbody>
+                                </table>
 							</section>
 						</div>
 						<div class="6u$ 18u$(medium)">
